@@ -14,7 +14,7 @@ class TodoApp:
         self.root.config(bg="#f8f9fa")
 # MADE BY KAIF TARASAGAR
         self.tasks = []
-        self.dark_mode = False  
+        self.dark_mode = False
         self.load_tasks()
 
         self.title_label = tk.Label(
@@ -34,8 +34,8 @@ class TodoApp:
         self.search_var = tk.StringVar()# MADE BY KAIF TARASAGAR
         self.search_var.trace("w", lambda *args: self.refresh_list())
 
-        search_entry = tk.Entry(search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
-        search_entry.pack(side=tk.LEFT, padx=5)
+        self.search_entry = tk.Entry(search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
+        self.search_entry.pack(side=tk.LEFT, padx=5)
 # MADE BY KAIF TARASAGAR
         self.tree = ttk.Treeview(root, columns=("Task", "Category", "Priority", "Status"), show="headings", height=12)
         self.tree.heading("Task", text="Task") ; self.tree.column("Task", width=260)
@@ -43,6 +43,8 @@ class TodoApp:
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
         self.tree.heading("Status", text="Status") ; self.tree.column("Status", width=100)# MADE BY KAIF TARASAGAR
         self.tree.pack(pady=10)
+        self.tree.bind("<Double-1>", self.update_task)
+        self.tree.bind("<Delete>", self.delete_task)
         btn_frame = tk.Frame(root, bg="#f8f9fa")
         btn_frame.pack(pady=10)
 # MADE BY KAIF TARASAGAR
@@ -57,7 +59,12 @@ class TodoApp:
         self.status_label = tk.Label(root, textvariable=self.status_var, font=("Arial", 11), bg="#f8f9fa", fg="#495057")
         self.status_label.pack(side=tk.BOTTOM, pady=5)
 # MADE BY KAIF TARASAGAR
+        self.tree.tag_configure("high", background="#e45252")
+        self.tree.tag_configure("medium", background="#ebc139")
+        self.tree.tag_configure("low", background="#23e24f")
+        self.tree.tag_configure("done", foreground="#808080")
         self.refresh_list()
+        self.search_entry.focus_set()
     def add_task(self):
         task_name = simpledialog.askstring("Add Task", "Enter your new task:")
         if not task_name:
@@ -93,7 +100,7 @@ class TodoApp:
 # MADE BY KAIF TARASAGAR
         tk.Button(category_window, text="Save Task", command=save_task, bg="#0d6efd", fg="white").pack(pady=10)
 
-    def update_task(self):
+    def update_task(self, event=None):
         selected = self.get_selected()
         if selected:
             new_task = simpledialog.askstring("Update Task", f"Edit task:\n{selected['task']}", initialvalue=selected["task"])
@@ -109,7 +116,7 @@ class TodoApp:
             self.save_tasks()
             self.refresh_list()
 # MADE BY KAIF TARASAGAR
-    def delete_task(self):
+    def delete_task(self, event=None):
         selected = self.get_selected()
         if selected:
             confirm = messagebox.askyesno("Delete Task", f"Delete:\n{selected['task']}?")
@@ -135,13 +142,11 @@ class TodoApp:
 
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
-                tag = task["priority"].lower()
-                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
+                tags = [task["priority"].lower()]
+                if task["status"] == "Done":
+                    tags.append("done")
+                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=tuple(tags))
 # MADE BY KAIF TARASAGAR
-        self.tree.tag_configure("high", background="#e45252")  
-        self.tree.tag_configure("medium", background="#ebc139") 
-        self.tree.tag_configure("low", background="#23e24f")    
-
         self.update_status()
 
     def update_status(self):# MADE BY KAIF TARASAGAR
@@ -192,8 +197,8 @@ app = TodoApp(root)# MADE BY KAIF TARASAGAR
 root.mainloop()
 
 
-                                        #-- MADE BY KAIF TARASAGAR 
-                                               
+                                        #-- MADE BY KAIF TARASAGAR
+
                                          # https://www.linkedin.com/in/kaif-tarasgar-0b5425326/
-                                              
+
                                          # https://x.com/Kaif_T_200
