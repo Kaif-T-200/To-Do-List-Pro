@@ -36,8 +36,11 @@ class TodoApp:
 
         search_entry = tk.Entry(search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
         search_entry.pack(side=tk.LEFT, padx=5)
+        search_entry.focus_set()
 # MADE BY KAIF TARASAGAR
         self.tree = ttk.Treeview(root, columns=("Task", "Category", "Priority", "Status"), show="headings", height=12)
+        self.tree.bind("<Delete>", lambda e: self.delete_task())
+        self.tree.bind("<Double-1>", lambda e: self.update_task())
         self.tree.heading("Task", text="Task") ; self.tree.column("Task", width=260)
         self.tree.heading("Category", text="Category") ; self.tree.column("Category", width=120)
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
@@ -135,12 +138,15 @@ class TodoApp:
 
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
-                tag = task["priority"].lower()
-                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
+                tags = [task["priority"].lower()]
+                if task["status"] == "Done":
+                    tags.append("done")
+                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=tuple(tags))
 # MADE BY KAIF TARASAGAR
         self.tree.tag_configure("high", background="#e45252")  
         self.tree.tag_configure("medium", background="#ebc139") 
-        self.tree.tag_configure("low", background="#23e24f")    
+        self.tree.tag_configure("low", background="#23e24f")
+        self.tree.tag_configure("done", foreground="#6c757d")
 
         self.update_status()
 
