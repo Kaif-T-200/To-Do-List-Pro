@@ -1,0 +1,3 @@
+## 2024-05-24 - De-emphasize completed tasks
+**Learning:** For list-based task managers, visually de-emphasizing completed tasks (e.g., using a muted gray foreground) significantly improves scannability for active tasks. In Tkinter's `ttk.Treeview`, this can be achieved by appending a "done" tag to the item's tags list and configuring its visual properties. A foreground color of `#595959` provides a 7:1 contrast ratio against a light background (#f8f9fa), meeting WCAG AAA standards.
+**Action:** Always consider the visual hierarchy of active vs. completed states in UI lists. Ensure "dimmed" states still maintain accessible contrast levels.
