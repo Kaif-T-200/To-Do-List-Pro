@@ -1,0 +1,3 @@
+## 2025-05-15 - Treeview Tag Precedence for Overlapping Styles
+**Learning:** In Tkinter's `ttk.Treeview`, when multiple tags are applied to an item, the tag that appears last in the `tags` tuple takes visual precedence for overlapping attributes (like `background` or `foreground`). Additionally, to maintain WCAG AA compliance (4.5:1 ratio) for de-emphasized 'done' tasks, the 'done' tag must explicitly set its background to match the app's background to avoid clashing with priority-based background colors.
+**Action:** Always append state-based tags (like 'done', 'selected', 'error') last in the `tags` tuple if they should override default category or priority styling.
