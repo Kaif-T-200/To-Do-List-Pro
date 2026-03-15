@@ -1,0 +1,3 @@
+## 2025-05-15 - [Tkinter Treeview Tag Precedence & Accessibility]
+**Learning:** In Tkinter's `ttk.Treeview`, the last tag in the `tags` tuple takes visual precedence for overlapping attributes (e.g., background). To properly de-emphasize "Done" tasks that already have priority-based background colors (High/Medium/Low), the `done` tag must be appended last and explicitly define both foreground (for de-emphasis) and background (to neutralize the priority color) to maintain WCAG AA compliance.
+**Action:** Always append state-based tags (like 'done', 'disabled', 'inactive') to the end of the `tags` tuple in Treeview items and explicitly reset background colors to theme defaults if they should override priority/category colors.
