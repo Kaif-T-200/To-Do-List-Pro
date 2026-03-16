@@ -1,0 +1,3 @@
+## 2025-05-14 - Overriding Treeview Tags for Accessibility
+**Learning:** In Tkinter's `ttk.Treeview`, the tag appearing last in the `tags` tuple takes precedence for overlapping attributes. To ensure WCAG AA compliance for a 'done' state (dimmed text), one must also override any background colors set by earlier tags (like priority levels) to a neutral background, as the foreground-background contrast might otherwise fail.
+**Action:** When implementing de-emphasis states in Treeviews, always explicitly set both foreground and background colors if the item might have other conditional formatting tags.
