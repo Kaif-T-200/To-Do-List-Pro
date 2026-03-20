@@ -14,7 +14,7 @@ class TodoApp:
         self.root.config(bg="#f8f9fa")
 # MADE BY KAIF TARASAGAR
         self.tasks = []
-        self.dark_mode = False  
+        self.dark_mode = False
         self.load_tasks()
 
         self.title_label = tk.Label(
@@ -135,12 +135,19 @@ class TodoApp:
 
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
-                tag = task["priority"].lower()
-                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
+                tags = [task["priority"].lower()]
+                if task["status"] == "Done":
+                    tags.append("done")
+                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=tuple(tags))
 # MADE BY KAIF TARASAGAR
-        self.tree.tag_configure("high", background="#e45252")  
-        self.tree.tag_configure("medium", background="#ebc139") 
-        self.tree.tag_configure("low", background="#23e24f")    
+        self.tree.tag_configure("high", background="#e45252")
+        self.tree.tag_configure("medium", background="#ebc139")
+        self.tree.tag_configure("low", background="#23e24f")
+
+        if self.dark_mode:
+            self.tree.tag_configure("done", background="#212529", foreground="#a9a9a9")
+        else:
+            self.tree.tag_configure("done", background="#f8f9fa", foreground="#595959")
 
         self.update_status()
 
@@ -192,8 +199,8 @@ app = TodoApp(root)# MADE BY KAIF TARASAGAR
 root.mainloop()
 
 
-                                        #-- MADE BY KAIF TARASAGAR 
-                                               
+                                        #-- MADE BY KAIF TARASAGAR
+
                                          # https://www.linkedin.com/in/kaif-tarasgar-0b5425326/
-                                              
+
                                          # https://x.com/Kaif_T_200
