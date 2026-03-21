@@ -1,0 +1,3 @@
+## 2024-05-24 - [Visual Feedback for Completed Tasks and Enhanced Dark Mode Consistency]
+**Learning:** In Tkinter's `ttk.Treeview`, the tag that appears last in the `tags` tuple takes visual precedence for overlapping attributes. This is critical when implementing states like 'done' that should override default priority-based coloring. Additionally, for full theme consistency in Tkinter, each UI element (frames, labels, entries, and the Treeview style) must be individually updated during a theme toggle.
+**Action:** Always ensure state-based tags (like 'done') are appended to the end of the `tags` list in `Treeview.insert` and maintain a registry of all UI widgets to ensure complete theme synchronization in `toggle_dark_mode`.

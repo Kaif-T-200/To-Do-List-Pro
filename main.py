@@ -14,7 +14,7 @@ class TodoApp:
         self.root.config(bg="#f8f9fa")
 # MADE BY KAIF TARASAGAR
         self.tasks = []
-        self.dark_mode = False  
+        self.dark_mode = False
         self.load_tasks()
 
         self.title_label = tk.Label(
@@ -26,16 +26,19 @@ class TodoApp:
         )# MADE BY KAIF TARASAGAR
         self.title_label.pack(pady=10)
 
-        search_frame = tk.Frame(root, bg="#f8f9fa")# MADE BY KAIF TARASAGAR
-        search_frame.pack(pady=5)
+        self.search_frame = tk.Frame(root, bg="#f8f9fa")# MADE BY KAIF TARASAGAR
+        self.search_frame.pack(pady=5)
 
-        tk.Label(search_frame, text="🔍 Search:", font=("Arial", 12), bg="#f8f9fa").pack(side=tk.LEFT, padx=5)
+        self.search_label = tk.Label(self.search_frame, text="🔍 Search:", font=("Arial", 12), bg="#f8f9fa")
+        self.search_label.pack(side=tk.LEFT, padx=5)
 
         self.search_var = tk.StringVar()# MADE BY KAIF TARASAGAR
         self.search_var.trace("w", lambda *args: self.refresh_list())
 
-        search_entry = tk.Entry(search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
-        search_entry.pack(side=tk.LEFT, padx=5)
+        self.search_entry = tk.Entry(self.search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
+        self.search_entry.pack(side=tk.LEFT, padx=5)
+
+        self.style = ttk.Style()
 # MADE BY KAIF TARASAGAR
         self.tree = ttk.Treeview(root, columns=("Task", "Category", "Priority", "Status"), show="headings", height=12)
         self.tree.heading("Task", text="Task") ; self.tree.column("Task", width=260)
@@ -58,6 +61,9 @@ class TodoApp:
         self.status_label.pack(side=tk.BOTTOM, pady=5)
 # MADE BY KAIF TARASAGAR
         self.refresh_list()
+        self.toggle_dark_mode() # Set initial theme styles (starting from light mode)
+        self.toggle_dark_mode() # Restore initial theme state
+
     def add_task(self):
         task_name = simpledialog.askstring("Add Task", "Enter your new task:")
         if not task_name:
@@ -135,12 +141,11 @@ class TodoApp:
 
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
-                tag = task["priority"].lower()
-                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
-# MADE BY KAIF TARASAGAR
-        self.tree.tag_configure("high", background="#e45252")  
-        self.tree.tag_configure("medium", background="#ebc139") 
-        self.tree.tag_configure("low", background="#23e24f")    
+                tags = [task["priority"].lower()]
+                if task["status"] == "Done":
+                    tags.append("done")
+                # In Tkinter Treeview, the last tag in the list takes visual precedence.
+                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=tuple(tags))
 
         self.update_status()
 
@@ -178,22 +183,27 @@ class TodoApp:
     def toggle_dark_mode(self):
         self.dark_mode = not self.dark_mode
         if self.dark_mode:
-            self.root.config(bg="#212529")# MADE BY KAIF TARASAGAR
-            self.title_label.config(bg="#212529", fg="white")
-            self.status_label.config(bg="#212529", fg="white")
+            bg, fg, field_bg, done_fg = "#212529", "white", "#212529", "#a9a9a9"
         else:
-            self.root.config(bg="#f8f9fa")# MADE BY KAIF TARASAGAR
-            self.title_label.config(bg="#f8f9fa", fg="#212529")
-            self.status_label.config(bg="#f8f9fa", fg="#495057")
+            bg, fg, field_bg, done_fg = "#f8f9fa", "#212529", "#f8f9fa", "#595959"
+
+        self.root.config(bg=bg)
+        self.title_label.config(bg=bg, fg=fg)
+        self.search_frame.config(bg=bg)
+        self.search_label.config(bg=bg, fg=fg)
+        self.search_entry.config(bg=bg if self.dark_mode else "white", fg=fg, insertbackground=fg)
+        self.status_label.config(bg=bg, fg=fg if self.dark_mode else "#495057")
+
+        self.style.configure("Treeview", background=bg, foreground=fg, fieldbackground=field_bg)
+        self.style.map("Treeview", background=[("selected", "#0d6efd")])
+        self.tree.tag_configure("high", background="#e45252", foreground="white" if self.dark_mode else "black")
+        self.tree.tag_configure("medium", background="#ebc139", foreground="black")
+        self.tree.tag_configure("low", background="#23e24f", foreground="black")
+        self.tree.tag_configure("done", background=bg, foreground=done_fg)
+
         self.refresh_list()
 
-root = tk.Tk()
-app = TodoApp(root)# MADE BY KAIF TARASAGAR
-root.mainloop()
-
-
-                                        #-- MADE BY KAIF TARASAGAR 
-                                               
-                                         # https://www.linkedin.com/in/kaif-tarasgar-0b5425326/
-                                              
-                                         # https://x.com/Kaif_T_200
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = TodoApp(root)# MADE BY KAIF TARASAGAR
+    root.mainloop()
