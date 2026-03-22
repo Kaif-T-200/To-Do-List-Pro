@@ -1,0 +1,3 @@
+## 2025-05-15 - Visual de-emphasis for completed tasks in Treeview
+**Learning:** In a `ttk.Treeview`, when multiple tags are assigned to an item, the tag appearing last in the `tags` tuple takes visual precedence for overlapping attributes. This is useful for overriding priority-based background colors with a neutral state for completed tasks.
+**Action:** When implementing status-based styling in Treeview, always ensure the status tag (like 'done') is appended last and explicitly sets its background to match the app's neutral background to maintain WCAG-compliant contrast with its foreground color.
