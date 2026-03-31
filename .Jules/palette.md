@@ -1,0 +1,3 @@
+## 2025-05-15 - De-emphasizing completed tasks in Tkinter Treeview
+**Learning:** In Tkinter's `ttk.Treeview`, when multiple tags are assigned to an item, the tag that appears last in the `tags` tuple takes visual precedence for overlapping attributes. This is crucial for overriding background colors with a neutral state for completed items. Additionally, using a foreground color like `#595959` against a `#f8f9fa` background provides a contrast ratio of ~7:1, exceeding WCAG AA requirements while effectively de-emphasizing the text.
+**Action:** Always ensure high-priority state tags (like 'done' or 'disabled') are appended to the end of the tags tuple and verify contrast ratios for de-emphasized states.
