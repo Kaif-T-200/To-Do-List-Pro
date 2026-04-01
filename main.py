@@ -14,7 +14,7 @@ class TodoApp:
         self.root.config(bg="#f8f9fa")
 # MADE BY KAIF TARASAGAR
         self.tasks = []
-        self.dark_mode = False  
+        self.dark_mode = False
         self.load_tasks()
 
         self.title_label = tk.Label(
@@ -42,6 +42,8 @@ class TodoApp:
         self.tree.heading("Category", text="Category") ; self.tree.column("Category", width=120)
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
         self.tree.heading("Status", text="Status") ; self.tree.column("Status", width=100)# MADE BY KAIF TARASAGAR
+        self.tree.bind("<Double-1>", self.update_task)
+        self.tree.bind("<Delete>", self.delete_task)
         self.tree.pack(pady=10)
         btn_frame = tk.Frame(root, bg="#f8f9fa")
         btn_frame.pack(pady=10)
@@ -93,7 +95,9 @@ class TodoApp:
 # MADE BY KAIF TARASAGAR
         tk.Button(category_window, text="Save Task", command=save_task, bg="#0d6efd", fg="white").pack(pady=10)
 
-    def update_task(self):
+    def update_task(self, event=None):
+        if event and self.tree.identify_region(event.x, event.y) != "cell":
+            return
         selected = self.get_selected()
         if selected:
             new_task = simpledialog.askstring("Update Task", f"Edit task:\n{selected['task']}", initialvalue=selected["task"])
@@ -109,7 +113,7 @@ class TodoApp:
             self.save_tasks()
             self.refresh_list()
 # MADE BY KAIF TARASAGAR
-    def delete_task(self):
+    def delete_task(self, event=None):
         selected = self.get_selected()
         if selected:
             confirm = messagebox.askyesno("Delete Task", f"Delete:\n{selected['task']}?")
@@ -138,9 +142,9 @@ class TodoApp:
                 tag = task["priority"].lower()
                 self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
 # MADE BY KAIF TARASAGAR
-        self.tree.tag_configure("high", background="#e45252")  
-        self.tree.tag_configure("medium", background="#ebc139") 
-        self.tree.tag_configure("low", background="#23e24f")    
+        self.tree.tag_configure("high", background="#e45252")
+        self.tree.tag_configure("medium", background="#ebc139")
+        self.tree.tag_configure("low", background="#23e24f")
 
         self.update_status()
 
@@ -192,8 +196,8 @@ app = TodoApp(root)# MADE BY KAIF TARASAGAR
 root.mainloop()
 
 
-                                        #-- MADE BY KAIF TARASAGAR 
-                                               
+                                        #-- MADE BY KAIF TARASAGAR
+
                                          # https://www.linkedin.com/in/kaif-tarasgar-0b5425326/
-                                              
+
                                          # https://x.com/Kaif_T_200
