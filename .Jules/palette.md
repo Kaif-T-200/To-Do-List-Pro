@@ -1,0 +1,3 @@
+## 2025-05-14 - Visual De-emphasis for Completed Tasks
+**Learning:** In Tkinter `ttk.Treeview`, the last tag in the `tags` tuple takes precedence for visual attributes. This allows for easy state-based styling (e.g., 'done') that overrides default row styling (e.g., priority colors) without complex logic. To maintain accessibility, state-based tags should explicitly define both foreground and background colors to ensure contrast ratios against the application's theme.
+**Action:** Always append state-based tags (like 'done', 'selected', 'error') to the end of the `tags` tuple to ensure they correctly override default styling.
