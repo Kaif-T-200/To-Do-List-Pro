@@ -56,6 +56,9 @@ class TodoApp:
         self.status_var = tk.StringVar()
         self.status_label = tk.Label(root, textvariable=self.status_var, font=("Arial", 11), bg="#f8f9fa", fg="#495057")
         self.status_label.pack(side=tk.BOTTOM, pady=5)
+
+        self.tree.bind("<Double-1>", self.update_task)
+        self.tree.bind("<Delete>", self.delete_task)
 # MADE BY KAIF TARASAGAR
         self.refresh_list()
     def add_task(self):
@@ -93,7 +96,9 @@ class TodoApp:
 # MADE BY KAIF TARASAGAR
         tk.Button(category_window, text="Save Task", command=save_task, bg="#0d6efd", fg="white").pack(pady=10)
 
-    def update_task(self):
+    def update_task(self, event=None):
+        if event and self.tree.identify_region(event.x, event.y) != 'cell':
+            return
         selected = self.get_selected()
         if selected:
             new_task = simpledialog.askstring("Update Task", f"Edit task:\n{selected['task']}", initialvalue=selected["task"])
@@ -102,14 +107,14 @@ class TodoApp:
                 self.save_tasks()
                 self.refresh_list()
 
-    def mark_done(self):
+    def mark_done(self, event=None):
         selected = self.get_selected()
         if selected:
             selected["status"] = "Done"# MADE BY KAIF TARASAGAR
             self.save_tasks()
             self.refresh_list()
 # MADE BY KAIF TARASAGAR
-    def delete_task(self):
+    def delete_task(self, event=None):
         selected = self.get_selected()
         if selected:
             confirm = messagebox.askyesno("Delete Task", f"Delete:\n{selected['task']}?")
