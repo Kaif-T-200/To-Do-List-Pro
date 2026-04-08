@@ -1,0 +1,3 @@
+## 2025-05-15 - De-emphasizing Completed Tasks
+**Learning:** Visually de-emphasizing completed tasks (using gray text and neutral backgrounds) significantly reduces cognitive load by allowing users to focus on remaining active items. In Tkinter's `ttk.Treeview`, the order of tags in the `tags` tuple determines visual precedence, which is crucial for correctly overriding priority-based row colors.
+**Action:** When working with list-based UIs, implement a distinct 'completed' state that de-prioritizes items visually while maintaining accessibility through sufficient color contrast (e.g., WCAG AA compliant grays).
