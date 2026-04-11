@@ -1,0 +1,3 @@
+## 2026-04-11 - Visually de-emphasizing completed tasks
+**Learning:** Completed tasks often compete for attention with pending tasks if they share the same high-contrast priority colors. De-emphasizing them with a muted foreground color reduces cognitive load and helps users focus on remaining work. When using background colors for priority, the 'done' tag must also explicitly set its background to match the theme to maintain proper contrast with the grayed-out text.
+**Action:** Always provide a visual distinction for "completed" or "inactive" states. In Tkinter Treeviews, ensure the 'done' tag is applied last in the tags tuple and re-configured whenever the theme changes to maintain accessibility.
