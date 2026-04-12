@@ -1,0 +1,3 @@
+## 2025-05-15 - Visually de-emphasize completed tasks
+**Learning:** Completed tasks often carry the same visual weight as active tasks, leading to cognitive clutter. By de-emphasizing them (using a neutral grey foreground and matching the background to the theme), users can focus more easily on remaining work. In Tkinter's `ttk.Treeview`, the tag appearing last in the `tags` tuple takes visual precedence, allowing a 'done' tag to override priority-based background colors.
+**Action:** Use a 'done' tag with accessible contrast colors (#595959 for light, #a9a9a9 for dark) to dim completed items. Ensure these tags are re-configured during theme toggles.
