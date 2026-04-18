@@ -1,0 +1,3 @@
+## 2025-05-15 - Visually de-emphasizing completed tasks
+**Learning:** In a `ttk.Treeview`, the last tag in the `tags` tuple takes visual precedence. To effectively de-emphasize completed tasks that already have priority-based background colors, the 'done' tag must be appended last and explicitly configure its background color to match the UI theme to ensure high contrast with its grayed-out foreground.
+**Action:** When styling list items based on multiple states, ensure the most important visual state (like 'completion') is represented by the final tag in the sequence and that `tag_configure` is called within the refresh loop to handle dynamic theme changes.
