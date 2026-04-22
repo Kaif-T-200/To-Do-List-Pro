@@ -1,0 +1,3 @@
+## 2026-04-22 - [De-emphasizing Completed Tasks]
+**Learning:** Visually de-emphasizing completed tasks (e.g., using gray text and neutral backgrounds) significantly reduces cognitive load by allowing users to focus on remaining work. In Tkinter's Treeview, tag configuration order matters for visual precedence, and the 'done' tag must explicitly set its background to override priority-based colors while maintaining WCAG AA contrast.
+**Action:** Always provide clear visual distinction between active and completed states, ensuring that de-emphasized elements still meet accessibility standards for contrast in both light and dark themes.
