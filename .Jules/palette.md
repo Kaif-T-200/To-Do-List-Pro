@@ -1,0 +1,3 @@
+## 2026-04-25 - Visually de-emphasizing completed tasks
+**Learning:** Completed tasks often carry the same visual weight as active tasks, causing cognitive clutter. By de-emphasizing them (using lower contrast foregrounds and neutral backgrounds), the user can more easily focus on remaining work. Technical note: In Tkinter's Treeview, when multiple tags are applied to an item, the *last* tag in the sequence that defines a specific attribute (like background) takes precedence.
+**Action:** Always consider the "done" state as a primary candidate for visual de-emphasis to aid user focus. Ensure theme-aware color choices maintain accessibility (WCAG AA). When multiple tags are used, place the high-priority "override" tags last in the sequence.
