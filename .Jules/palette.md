@@ -1,0 +1,3 @@
+## 2025-05-14 - Visual De-emphasis for Completed Tasks
+**Learning:** Completed tasks should be visually distinguished from active tasks to reduce cognitive load. In a `ttk.Treeview`, this can be achieved using tags. The tag order matters: the last tag applied to an item that defines a specific attribute (like foreground or background) takes precedence. For accessibility (WCAG AA), muted colors must still maintain a contrast ratio of at least 4.5:1 against the background.
+**Action:** Use a "done" tag applied *after* other stylistic tags (like priority). Ensure theme-aware color selection for the "done" tag within the refresh logic to maintain accessibility in both Light and Dark modes.
