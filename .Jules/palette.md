@@ -1,0 +1,3 @@
+## 2024-05-02 - Visual De-emphasis for Completed Tasks
+**Learning:** Visually de-emphasizing completed tasks (e.g., using a greyed-out foreground) significantly reduces cognitive load by allowing users to focus on remaining active items. In Tkinter `ttk.Treeview`, tag precedence is determined by the order of tags in the item's tag list; the last tag applied that defines an attribute (like foreground or background) takes priority.
+**Action:** Always apply state-based styling (like 'done' or 'disabled') as the last tag in the list to ensure it correctly overrides default or priority-based visual styles.
