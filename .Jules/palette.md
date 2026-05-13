@@ -1,0 +1,3 @@
+## 2026-05-13 - Visual De-emphasis for Completed Tasks
+**Learning:** Visually de-emphasizing completed tasks (using a grayed-out foreground) significantly reduces cognitive load by allowing users to focus on pending items. When implementing this in a list with priority-based background colors, the 'done' tag must explicitly set its background to match the application's theme background to maintain WCAG AA contrast compliance (e.g., #595959 on #f8f9fa).
+**Action:** Always ensure that status-based styles (like 'done') take precedence and maintain accessible contrast ratios against the background, especially when overlapping with other categorizations like priority.
