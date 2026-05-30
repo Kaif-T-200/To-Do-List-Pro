@@ -43,6 +43,7 @@ class TodoApp:
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
         self.tree.heading("Status", text="Status") ; self.tree.column("Status", width=100)# MADE BY KAIF TARASAGAR
         self.tree.pack(pady=10)
+        self.tree.bind("<Double-1>", self.update_task)
         btn_frame = tk.Frame(root, bg="#f8f9fa")
         btn_frame.pack(pady=10)
 # MADE BY KAIF TARASAGAR
@@ -93,7 +94,9 @@ class TodoApp:
 # MADE BY KAIF TARASAGAR
         tk.Button(category_window, text="Save Task", command=save_task, bg="#0d6efd", fg="white").pack(pady=10)
 
-    def update_task(self):
+    def update_task(self, event=None):
+        if event and self.tree.identify_region(event.x, event.y) != "cell":
+            return
         selected = self.get_selected()
         if selected:
             new_task = simpledialog.askstring("Update Task", f"Edit task:\n{selected['task']}", initialvalue=selected["task"])
