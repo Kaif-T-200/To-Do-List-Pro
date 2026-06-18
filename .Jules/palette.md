@@ -1,0 +1,3 @@
+## 2024-05-23 - Visual Hierarchy for Completed Tasks
+**Learning:** In task management interfaces, completed tasks that retain the same visual weight (e.g., bright priority-based background colors) compete with active tasks for the user's attention. De-emphasizing completed tasks by graying them out and removing high-contrast backgrounds improves the visual hierarchy and allows users to focus on what still needs to be done.
+**Action:** Implement a 'done' tag in the task list that applies a neutral, low-contrast style (gray foreground on app background) to tasks marked as "Done". Ensure this tag is applied last in the Treeview tags to take precedence over priority styles, and use WCAG AA compliant colors for both Light and Dark modes.
