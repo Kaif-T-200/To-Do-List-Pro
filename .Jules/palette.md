@@ -1,0 +1,3 @@
+## 2024-05-23 - Visual Hierarchy for Completed Tasks
+**Learning:** Using a de-emphasized color (grayed out) for completed tasks improves the visual hierarchy of the task list, allowing users to focus on active tasks while maintaining visibility of accomplishments. When overlapping with priority-based background colors in a `ttk.Treeview`, the 'done' tag must be applied last to take visual precedence and should explicitly set its background to match the application's neutral background to ensure WCAG AA contrast compliance (~6.6:1 in light mode, ~6.4:1 in dark mode).
+**Action:** Always provide clear visual feedback for state changes (like task completion) that respects both visual hierarchy and accessibility standards across all supported UI themes.
