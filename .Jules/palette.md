@@ -1,0 +1,3 @@
+## 2026-06-23 - Visual Hierarchy for Completed Tasks
+**Learning:** In a task list, completed items should be de-emphasized to help users focus on active tasks. In `ttk.Treeview`, visual precedence is determined by tag order; the last tag applied to an item that defines an attribute (like foreground or background) will override previous ones. This is crucial when overlapping priority-based colors with a 'done' status.
+**Action:** Apply the 'done' tag last in the tag sequence and ensure it defines both foreground and background to maintain WCAG AA contrast against the application's theme-specific background.
