@@ -1,0 +1,3 @@
+## 2026-06-23 - Visual Hierarchy for Completed Tasks
+**Learning:** In a task-heavy interface, de-emphasizing completed items using muted colors (grayed out) helps users focus on active tasks while still providing a sense of accomplishment. This visual hierarchy is especially important when other visual cues (like priority-based colors) are present; the "completed" state should ideally take precedence to reduce visual noise. Ensuring accessibility (WCAG AA) requires specific contrast checks for these de-emphasized states in both light and dark modes.
+**Action:** Apply a 'done' tag with foreground #595959 (Light Mode) or #a9a9a9 (Dark Mode) to tasks marked as finished. Always ensure this tag is applied last to override other row-level styles.
