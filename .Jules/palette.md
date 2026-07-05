@@ -1,0 +1,3 @@
+## 2024-06-30 - Improving Visual Hierarchy for Completed Tasks
+**Learning:** Using a de-emphasized color scheme (grayed out) for completed tasks significantly improves the visual hierarchy of the task list. It allows users to focus on active tasks while still seeing their accomplishments. To maintain accessibility (WCAG AA), a contrast ratio of at least 4.5:1 is required, even for de-emphasized text.
+**Action:** In `ttk.Treeview`, apply a 'done' tag last in the item's tags sequence to override priority-based background colors, and explicitly set both foreground and background colors to ensure contrast compliance in both light and dark modes.
