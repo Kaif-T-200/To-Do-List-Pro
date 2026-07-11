@@ -1,0 +1,3 @@
+## 2026-07-09 - Visual Hierarchy of Completed Tasks
+**Learning:** In applications using color-coded categories or priorities (like this task list), marking an item as "done" needs more than just a status text change. Using a de-emphasized (grayed-out) style for completed tasks significantly improves scanability, allowing users to focus on active items. When implementing this in `ttk.Treeview`, the "done" tag must be applied last to take visual precedence over priority-based background colors.
+**Action:** Always explicitly define both foreground and background colors for status-override tags to maintain WCAG AA contrast ratios, especially when they might overlap with other colored styles. Ensure these styles are refreshed when the UI theme changes.
