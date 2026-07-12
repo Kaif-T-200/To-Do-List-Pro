@@ -1,0 +1,3 @@
+## 2026-07-09 - Visual Hierarchy of Completed Tasks
+**Learning:** Using a de-emphasized color (grayed out) for completed tasks improves the visual hierarchy of the task list, allowing users to focus on active tasks while maintaining visibility of achievements. To ensure WCAG AA compliance, foreground colors must be carefully chosen against both light and dark backgrounds (e.g., #595959 on #f8f9fa and #a9a9a9 on #212529).
+**Action:** When overriding multi-colored row styles (like priority levels), always apply the status override tag last and explicitly define both foreground and background colors to maintain contrast.
