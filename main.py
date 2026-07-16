@@ -57,7 +57,19 @@ class TodoApp:
         self.status_label = tk.Label(root, textvariable=self.status_var, font=("Arial", 11), bg="#f8f9fa", fg="#495057")
         self.status_label.pack(side=tk.BOTTOM, pady=5)
 # MADE BY KAIF TARASAGAR
+        self.tree.tag_configure("high", background="#e45252")
+        self.tree.tag_configure("medium", background="#ebc139")
+        self.tree.tag_configure("low", background="#23e24f")
+        self.configure_done_tag()
+
         self.refresh_list()
+
+    def configure_done_tag(self):
+        if self.dark_mode:
+            self.tree.tag_configure("done", foreground="#a9a9a9", background="#212529")
+        else:
+            self.tree.tag_configure("done", foreground="#595959", background="#f8f9fa")
+
     def add_task(self):
         task_name = simpledialog.askstring("Add Task", "Enter your new task:")
         if not task_name:
@@ -135,13 +147,11 @@ class TodoApp:
 
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
-                tag = task["priority"].lower()
-                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
+                tags = [task["priority"].lower()]
+                if task["status"] == "Done":
+                    tags.append("done")
+                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=tuple(tags))
 # MADE BY KAIF TARASAGAR
-        self.tree.tag_configure("high", background="#e45252")  
-        self.tree.tag_configure("medium", background="#ebc139") 
-        self.tree.tag_configure("low", background="#23e24f")    
-
         self.update_status()
 
     def update_status(self):# MADE BY KAIF TARASAGAR
@@ -185,6 +195,7 @@ class TodoApp:
             self.root.config(bg="#f8f9fa")# MADE BY KAIF TARASAGAR
             self.title_label.config(bg="#f8f9fa", fg="#212529")
             self.status_label.config(bg="#f8f9fa", fg="#495057")
+        self.configure_done_tag()
         self.refresh_list()
 
 root = tk.Tk()
