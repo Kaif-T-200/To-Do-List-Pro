@@ -1,0 +1,3 @@
+## 2026-07-15 - Visual Hierarchy of Completed Tasks
+**Learning:** Completed tasks in a list should be de-emphasized rather than completely removed or highlighted with high-contrast active colors. In high-contrast environments or priority-colored tables, a completed task row needs explicit foreground/background colors matching the theme mode to maintain WCAG AA contrast (foreground #595959 on #f8f9fa in light mode, foreground #a9a9a9 on #212529 in dark mode) while visually communicating completion.
+**Action:** Move tag configuration to a separate method, define a "done" style with explicit, theme-appropriate contrast colors, and apply the status tag last in the Treeview item's tags list to override prior priority highlighting.
