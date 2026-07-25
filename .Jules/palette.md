@@ -1,0 +1,3 @@
+## 2026-07-15 - Visual Hierarchy of Completed Tasks
+**Learning:** Using a de-emphasized color (grayed out) for completed tasks improves the visual hierarchy of the task list, allowing users to focus on active tasks while maintaining visibility of accomplishments. To maintain WCAG AA compliance, a gray foreground of #595959 on light background #f8f9fa (~6.6:1 contrast) and #a9a9a9 on dark background #212529 (~6.4:1) must be used.
+**Action:** Implement a 'done' tag in Tkinter's ttk.Treeview configured with WCAG-compliant colors that overrides any priority-based background highlights for tasks whose status is 'Done'.
