@@ -1,0 +1,3 @@
+## 2026-07-15 - Visual Hierarchy of Completed Tasks
+**Learning:** Using a de-emphasized color (grayed out) for completed tasks improves the visual hierarchy of the task list, allowing users to focus on active tasks while maintaining visibility of accomplishments.
+**Action:** Prepend a 'done' tag in the tags list/tuple for completed items, explicitly defining both foreground and background colors to ensure WCAG AA contrast compliance (~6.6:1 in light mode, ~6.4:1 in dark mode) and visual override precedence. Configure tag styles once outside high-frequency refresh loops to avoid performance overhead.
