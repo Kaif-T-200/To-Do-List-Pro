@@ -1,0 +1,3 @@
+## 2026-07-15 - Visual Hierarchy of Completed Tasks
+**Learning:** Using a de-emphasized color (grayed out) for completed tasks improves the visual hierarchy of the task list, allowing users to focus on active tasks while maintaining visibility of accomplishments. To maintain WCAG AA compliance, a contrast ratio of at least 4.5:1 is required (e.g., `#595959` on `#f8f9fa` in Light Mode and `#a9a9a9` on `#212529` in Dark Mode).
+**Action:** Apply a 'done' tag that overrides priority colors and sets the foreground/background color appropriately. Prepend or place the 'done' tag first in the Treeview tags tuple to ensure proper style precedence.
