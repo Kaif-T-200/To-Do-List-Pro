@@ -1,0 +1,5 @@
+## 2026-07-15 - Visual Hierarchy of Completed Tasks
+
+**Learning:** Using a de-emphasized color (grayed out) for completed tasks improves the visual hierarchy of the task list, allowing users to focus on active tasks while maintaining visibility of accomplishments. To achieve WCAG AA compliance (contrast ratio of at least 4.5:1), the 'done' tag should use foreground `#595959` on background `#f8f9fa` in light mode (~6.6:1 contrast ratio) and foreground `#a9a9a9` on background `#212529` in dark mode (~6.4:1 contrast ratio). When overriding priority colors in `ttk.Treeview`, the status tag ('done') must be applied first in the item's tags sequence to take visual precedence, and its background must match the neutral application background to ensure proper color contrast.
+
+**Action:** Always configure `ttk.Treeview` tags dynamically when toggling themes to ensure they stay compliant, place status tags first in the tags sequence for visual precedence, and explicitly define both foreground and background colors.
