@@ -26,16 +26,17 @@ class TodoApp:
         )# MADE BY KAIF TARASAGAR
         self.title_label.pack(pady=10)
 
-        search_frame = tk.Frame(root, bg="#f8f9fa")# MADE BY KAIF TARASAGAR
-        search_frame.pack(pady=5)
+        self.search_frame = tk.Frame(root, bg="#f8f9fa")# MADE BY KAIF TARASAGAR
+        self.search_frame.pack(pady=5)
 
-        tk.Label(search_frame, text="🔍 Search:", font=("Arial", 12), bg="#f8f9fa").pack(side=tk.LEFT, padx=5)
+        self.search_label = tk.Label(self.search_frame, text="🔍 Search:", font=("Arial", 12), bg="#f8f9fa", fg="#212529")
+        self.search_label.pack(side=tk.LEFT, padx=5)
 
         self.search_var = tk.StringVar()# MADE BY KAIF TARASAGAR
         self.search_var.trace("w", lambda *args: self.refresh_list())
 
-        search_entry = tk.Entry(search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
-        search_entry.pack(side=tk.LEFT, padx=5)
+        self.search_entry = tk.Entry(self.search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
+        self.search_entry.pack(side=tk.LEFT, padx=5)
 # MADE BY KAIF TARASAGAR
         self.tree = ttk.Treeview(root, columns=("Task", "Category", "Priority", "Status"), show="headings", height=12)
         self.tree.heading("Task", text="Task") ; self.tree.column("Task", width=260)
@@ -43,8 +44,8 @@ class TodoApp:
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
         self.tree.heading("Status", text="Status") ; self.tree.column("Status", width=100)# MADE BY KAIF TARASAGAR
         self.tree.pack(pady=10)
-        btn_frame = tk.Frame(root, bg="#f8f9fa")
-        btn_frame.pack(pady=10)
+        self.btn_frame = tk.Frame(root, bg="#f8f9fa")
+        self.btn_frame.pack(pady=10)
 # MADE BY KAIF TARASAGAR
         tk.Button(btn_frame, text="➕ Add", width=14, command=self.add_task, bg="#0d6efd", fg="white").grid(row=0, column=0, padx=6)
         tk.Button(btn_frame, text="✏️ Update", width=14, command=self.update_task, bg="#ffc107", fg="black").grid(row=0, column=1, padx=6)
@@ -180,10 +181,18 @@ class TodoApp:
         if self.dark_mode:
             self.root.config(bg="#212529")# MADE BY KAIF TARASAGAR
             self.title_label.config(bg="#212529", fg="white")
+            self.search_frame.config(bg="#212529")
+            self.search_label.config(bg="#212529", fg="white")
+            self.search_entry.config(bg="#343a40", fg="white", insertbackground="white")
+            self.btn_frame.config(bg="#212529")
             self.status_label.config(bg="#212529", fg="white")
         else:
             self.root.config(bg="#f8f9fa")# MADE BY KAIF TARASAGAR
             self.title_label.config(bg="#f8f9fa", fg="#212529")
+            self.search_frame.config(bg="#f8f9fa")
+            self.search_label.config(bg="#f8f9fa", fg="#212529")
+            self.search_entry.config(bg="white", fg="black", insertbackground="black")
+            self.btn_frame.config(bg="#f8f9fa")
             self.status_label.config(bg="#f8f9fa", fg="#495057")
         self.refresh_list()
 
