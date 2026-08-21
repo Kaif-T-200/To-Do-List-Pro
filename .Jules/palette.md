@@ -1,0 +1,3 @@
+## 2026-07-15 - Visual Hierarchy for Completed Tasks in Tkinter Treeview
+**Learning:** Overlapping row background colors (such as priority highlighting) on completed items can create visual noise and distract users from pending tasks. Applying a de-emphasized `"done"` tag before priority tags in `ttk.Treeview` allows the `"done"` tag's foreground and background settings to take precedence. Ensuring contrast ratios stay above 4.5:1 (`#595959` on `#f8f9fa` in light mode, `#a9a9a9` on `#212529` in dark mode) satisfies WCAG AA standards while keeping focus on active tasks.
+**Action:** When working with Tkinter `ttk.Treeview` items with status overlays, place status override tags first in the item's tag sequence and adjust colors dynamically based on the active theme.
