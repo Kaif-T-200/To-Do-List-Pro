@@ -1,0 +1,3 @@
+## 2026-07-15 - Visual Hierarchy of Completed Tasks
+**Learning:** Completed tasks retained high-contrast priority background colors (red, yellow, green), drawing equal visual attention as active pending tasks. De-emphasizing completed tasks with grayed-out foreground text on a neutral background creates a clear visual hierarchy, allowing users to focus on pending tasks while retaining visibility of completed items.
+**Action:** Apply a status tag ('done') after priority tags in Treeview so completed tasks override priority styling with neutral background (#f8f9fa in light mode, #212529 in dark mode) and accessible text colors (#595959 / #a9a9a9, maintaining WCAG AA contrast > 4.5:1).
