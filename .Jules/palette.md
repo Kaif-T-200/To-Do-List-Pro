@@ -1,0 +1,3 @@
+## 2026-07-15 - Visual De-emphasis for Completed Tasks in Tkinter Treeview
+**Learning:** Overriding priority-based row colors with a de-emphasized 'done' tag in `ttk.Treeview` improves visual hierarchy by drawing user focus to active tasks. To maintain WCAG AA contrast, the 'done' tag must set a neutral background matching the app canvas (`#f8f9fa` light / `#212529` dark) along with compliant foreground text (`#595959` light / `#a9a9a9` dark).
+**Action:** When styling status overrides over prior row tags in `ttk.Treeview`, append the status tag last in the `tags` sequence and configure both background and foreground to ensure high-contrast readability across light/dark themes.
