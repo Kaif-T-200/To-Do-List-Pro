@@ -125,6 +125,8 @@ class TodoApp:
             for task in self.tasks:
                 if (task["task"], task["category"], task["priority"], task["status"]) == values:
                     return task
+            messagebox.showwarning("Warning", "Select a valid task!")
+            return None
         except IndexError:
             messagebox.showwarning("Warning", "Select a task first!")
             return None
@@ -133,14 +135,21 @@ class TodoApp:
         self.tree.delete(*self.tree.get_children())
         search_text = self.search_var.get().lower()
 
+        count = 0
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
                 tag = task["priority"].lower()
                 self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
+                count += 1
+
+        if count == 0:
+            self.tree.insert("", tk.END, values=("No tasks found", "-", "-", "-"), tags=("empty",))
+
 # MADE BY KAIF TARASAGAR
         self.tree.tag_configure("high", background="#e45252")  
         self.tree.tag_configure("medium", background="#ebc139") 
         self.tree.tag_configure("low", background="#23e24f")    
+        self.tree.tag_configure("empty", foreground="#888888")
 
         self.update_status()
 
