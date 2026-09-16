@@ -43,6 +43,8 @@ class TodoApp:
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
         self.tree.heading("Status", text="Status") ; self.tree.column("Status", width=100)# MADE BY KAIF TARASAGAR
         self.tree.pack(pady=10)
+        self.tree.bind("<Double-1>", self.toggle_done)
+        self.tree.bind("<Return>", self.toggle_done)
         btn_frame = tk.Frame(root, bg="#f8f9fa")
         btn_frame.pack(pady=10)
 # MADE BY KAIF TARASAGAR
@@ -106,6 +108,17 @@ class TodoApp:
         selected = self.get_selected()
         if selected:
             selected["status"] = "Done"# MADE BY KAIF TARASAGAR
+            self.save_tasks()
+            self.refresh_list()
+
+    def toggle_done(self, event=None):
+        if event and event.type == tk.EventType.ButtonPress:
+            region = self.tree.identify_region(event.x, event.y)
+            if region in ("heading", "nothing", "separator"):
+                return
+        selected = self.get_selected()
+        if selected:
+            selected["status"] = "Pending" if selected["status"] == "Done" else "Done"
             self.save_tasks()
             self.refresh_list()
 # MADE BY KAIF TARASAGAR
