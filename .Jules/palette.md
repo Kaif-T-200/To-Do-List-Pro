@@ -1,0 +1,3 @@
+## 2026-07-15 - Double-Click Quick Toggle for Task Completion Status
+**Learning:** In desktop task list interfaces, requiring users to select a row and click an external button to change completion status introduces interaction friction. Enabling double-click on Treeview data cells to toggle task status between "Pending" and "Done" provides an intuitive shortcut, while ensuring region identification (`cell`) prevents accidental triggers on column headers or empty space.
+**Action:** Always check `tree.identify_region(event.x, event.y)` before handling double-click events in `ttk.Treeview` to ensure events only register on valid data rows.
