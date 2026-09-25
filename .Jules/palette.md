@@ -1,0 +1,4 @@
+## 2026-07-15 - Quick Status Toggling via Row Double-Click in Tkinter Treeview
+
+**Learning:** In desktop task lists using Tkinter `ttk.Treeview`, forcing users to select a row and then locate/click a separate "Mark Done" button creates friction for high-frequency task status updates. Allowing double-click toggling directly on task cells provides immediate visual feedback and improves interaction efficiency. Always ensure `identify_region` checks prevent accidental triggers on header or empty space clicks.
+**Action:** When implementing table/list interactions in Tkinter desktop GUIs, bind double-click events (`<Double-1>`) with region validation (`identify_region(x, y) in ("cell", "tree")`) and support bidirectional status toggling (e.g. Done <-> Pending) so users can easily revert accidental status changes.
