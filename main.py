@@ -36,6 +36,15 @@ class TodoApp:
 
         search_entry = tk.Entry(search_frame, textvariable=self.search_var, width=40, font=("Arial", 12))
         search_entry.pack(side=tk.LEFT, padx=5)
+
+        def focus_tree(event):
+            self.tree.focus_set()
+            children = self.tree.get_children()
+            if children:
+                self.tree.selection_set(children[0])
+                self.tree.focus(children[0])
+
+        search_entry.bind("<Return>", focus_tree)
 # MADE BY KAIF TARASAGAR
         self.tree = ttk.Treeview(root, columns=("Task", "Category", "Priority", "Status"), show="headings", height=12)
         self.tree.heading("Task", text="Task") ; self.tree.column("Task", width=260)
