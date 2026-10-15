@@ -42,6 +42,8 @@ class TodoApp:
         self.tree.heading("Category", text="Category") ; self.tree.column("Category", width=120)
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
         self.tree.heading("Status", text="Status") ; self.tree.column("Status", width=100)# MADE BY KAIF TARASAGAR
+        self.tree.bind("<Double-1>", lambda e: self.mark_done() if self.tree.identify_region(e.x, e.y) == "cell" else None)
+        self.tree.bind("<Return>", lambda e: self.mark_done())
         self.tree.pack(pady=10)
         btn_frame = tk.Frame(root, bg="#f8f9fa")
         btn_frame.pack(pady=10)
@@ -105,7 +107,7 @@ class TodoApp:
     def mark_done(self):
         selected = self.get_selected()
         if selected:
-            selected["status"] = "Done"# MADE BY KAIF TARASAGAR
+            selected["status"] = "Pending" if selected["status"] == "Done" else "Done"# MADE BY KAIF TARASAGAR
             self.save_tasks()
             self.refresh_list()
 # MADE BY KAIF TARASAGAR
