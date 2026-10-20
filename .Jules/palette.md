@@ -1,0 +1,3 @@
+## 2026-07-15 - Quick Task Status Toggling and Reversibility
+**Learning:** In desktop task list views using Tkinter Treeview, single action buttons that only set state to "Done" without allowing status reversion ("Pending") force users into an irreversible workflow unless deletion/recreation occurs. Supporting status toggling on both button click and double-click (`<Double-1>`) on table cells (with region checks to ignore header/empty clicks) provides a fast, intuitive, and reversible interaction pattern.
+**Action:** When working with table/list items with binary or toggle states, enable double-click handlers on table cells and ensure status transition functions toggle bidirectionally.
