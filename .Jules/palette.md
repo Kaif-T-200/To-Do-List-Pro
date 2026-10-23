@@ -1,0 +1,3 @@
+## 2026-07-15 - Double-Click Quick Toggle for Task Completion
+**Learning:** In Tkinter `ttk.Treeview`, double-clicking data rows is an intuitive micro-interaction for toggling task completion status, provided `tree.identify_region(event.x, event.y)` is checked to avoid triggering on header or empty space clicks. Additionally, making task completion status reversible (toggling between 'Pending' and 'Done') improves user control and reduces error recovery friction.
+**Action:** Always check `identify_region` in Treeview double-click handlers and support two-way status toggling when enhancing task or tabular list items.
