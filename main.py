@@ -43,6 +43,7 @@ class TodoApp:
         self.tree.heading("Priority", text="Priority") ;  self.tree.column("Priority", width=100)
         self.tree.heading("Status", text="Status") ; self.tree.column("Status", width=100)# MADE BY KAIF TARASAGAR
         self.tree.pack(pady=10)
+        self.tree.bind("<Double-1>", self.on_double_click)
         btn_frame = tk.Frame(root, bg="#f8f9fa")
         btn_frame.pack(pady=10)
 # MADE BY KAIF TARASAGAR
@@ -105,9 +106,14 @@ class TodoApp:
     def mark_done(self):
         selected = self.get_selected()
         if selected:
-            selected["status"] = "Done"# MADE BY KAIF TARASAGAR
+            selected["status"] = "Pending" if selected["status"] == "Done" else "Done"# MADE BY KAIF TARASAGAR
             self.save_tasks()
             self.refresh_list()
+
+    def on_double_click(self, event):
+        region = self.tree.identify_region(event.x, event.y)
+        if region in ("tree", "cell"):
+            self.mark_done()
 # MADE BY KAIF TARASAGAR
     def delete_task(self):
         selected = self.get_selected()
