@@ -136,11 +136,16 @@ class TodoApp:
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
                 tag = task["priority"].lower()
-                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
+                tags = ("done", tag) if task.get("status") == "Done" else (tag,)
+                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=tags)
 # MADE BY KAIF TARASAGAR
         self.tree.tag_configure("high", background="#e45252")  
         self.tree.tag_configure("medium", background="#ebc139") 
         self.tree.tag_configure("low", background="#23e24f")    
+        if self.dark_mode:
+            self.tree.tag_configure("done", background="#343a40", foreground="#adb5bd")
+        else:
+            self.tree.tag_configure("done", background="#e9ecef", foreground="#595959")
 
         self.update_status()
 
