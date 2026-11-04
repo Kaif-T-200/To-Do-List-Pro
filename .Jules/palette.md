@@ -1,0 +1,3 @@
+## 2026-11-03 - Completed Task Visual Hierarchy in Tkinter Treeview
+**Learning:** In Tkinter `ttk.Treeview`, items colored by priority will compete for attention even after completion if not de-emphasized. Prepending an override tag (e.g. `('done', priority_tag)`) with muted colors allows completed tasks to visually recede while preserving their priority metadata.
+**Action:** When working with status/priority combinations in `ttk.Treeview`, always define state override tags and place them first in the tag tuple so higher-precedence visual feedback applies cleanly without clashing with base item styles.
