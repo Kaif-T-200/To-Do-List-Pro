@@ -57,6 +57,7 @@ class TodoApp:
         self.status_label = tk.Label(root, textvariable=self.status_var, font=("Arial", 11), bg="#f8f9fa", fg="#495057")
         self.status_label.pack(side=tk.BOTTOM, pady=5)
 # MADE BY KAIF TARASAGAR
+        self.update_tree_styles()
         self.refresh_list()
     def add_task(self):
         task_name = simpledialog.askstring("Add Task", "Enter your new task:")
@@ -105,7 +106,7 @@ class TodoApp:
     def mark_done(self):
         selected = self.get_selected()
         if selected:
-            selected["status"] = "Done"# MADE BY KAIF TARASAGAR
+            selected["status"] = "Pending" if selected.get("status") == "Done" else "Done"# MADE BY KAIF TARASAGAR
             self.save_tasks()
             self.refresh_list()
 # MADE BY KAIF TARASAGAR
@@ -129,18 +130,24 @@ class TodoApp:
             messagebox.showwarning("Warning", "Select a task first!")
             return None
 
+    def update_tree_styles(self):# MADE BY KAIF TARASAGAR
+        if self.dark_mode:
+            self.tree.tag_configure("done", background="#2c3035", foreground="#a9a9a9")
+        else:
+            self.tree.tag_configure("done", background="#e9ecef", foreground="#595959")
+        self.tree.tag_configure("high", background="#e45252", foreground="white" if self.dark_mode else "black")
+        self.tree.tag_configure("medium", background="#ebc139", foreground="black")
+        self.tree.tag_configure("low", background="#23e24f", foreground="black")
+
     def refresh_list(self):# MADE BY KAIF TARASAGAR
         self.tree.delete(*self.tree.get_children())
         search_text = self.search_var.get().lower()
 
         for task in self.tasks:
             if search_text in task["task"].lower() or search_text in task["category"].lower():
-                tag = task["priority"].lower()
-                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=(tag,))
-# MADE BY KAIF TARASAGAR
-        self.tree.tag_configure("high", background="#e45252")  
-        self.tree.tag_configure("medium", background="#ebc139") 
-        self.tree.tag_configure("low", background="#23e24f")    
+                priority_tag = task["priority"].lower()
+                tags = ("done", priority_tag) if task.get("status") == "Done" else (priority_tag,)
+                self.tree.insert("", tk.END, values=(task["task"], task["category"], task["priority"], task["status"]), tags=tags)
 
         self.update_status()
 
@@ -185,6 +192,7 @@ class TodoApp:
             self.root.config(bg="#f8f9fa")# MADE BY KAIF TARASAGAR
             self.title_label.config(bg="#f8f9fa", fg="#212529")
             self.status_label.config(bg="#f8f9fa", fg="#495057")
+        self.update_tree_styles()
         self.refresh_list()
 
 root = tk.Tk()
